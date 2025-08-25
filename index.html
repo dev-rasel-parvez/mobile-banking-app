@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Talwind css -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-[#f4f5f7] h-[100vh] flex flex-col justify-center items-center">
+    <!-- image design -->
+    <div class=" w-[300px] h-[130px] bg-[url('/assets/bg.png')] bg-cover flex justify-center items-center">
+        <img src="./assets/Group.png" alt="">
+    </div>
+
+    <!-- Create an account form -->
+    <div id="create-account">
+        <form class=" bg-white rounded-2xl p-5 w-[350px] mt-2">
+            <div>
+                <label for="" class=" font-semibold">Mobile Number</label>
+                <br>
+                <input id="Create-account-phone-number" type="tel" required placeholder="Enter your number"
+                    class="input input-neutral bg-[#f4f5f7] mt-2 rounded-3xl border-0" />
+
+                <p id="phone-error" class=" text-red-500 text-sm mt-1 hidden">
+                    Enter only 11 digits valid phone number
+                </p>
+
+                <p id="phone-exist-error" class=" text-red-500 text-sm mt-1 hidden">
+                    This phone number already exists. Please try a different number.
+                </p>
+            </div>
+            <div class="mt-2">
+                <label for="" class=" font-semibold ">Password</label>
+                <br>
+                <input id="Create-password" required type="text" placeholder="Set your password"
+                    class="input input-neutral bg-[#f4f5f7] mt-2 rounded-3xl border-0" />
+                <p id="pass-error" class="text-red-500 text-sm mt-1 hidden">
+                    Password must be 5–8 chars, include uppercase, lowercase, number, and special character
+                </p>
+            </div>
+            <button id="Create-account-btn" class="btn btn-primary w-full mt-4 rounded-4xl">Create an account</button>
+        </form>
+        <!-- Don’t have an account -->
+        <p class="text-sm text-gray-600 text-center mt-2">
+            Already have an account?
+            <a href="#" id="login?" class="text-blue-600 font-semibold hover:underline">
+                Log in
+            </a>
+        </p>
+    </div>
+
+    <!-- Login Form -->
+    <div id="login" style="display: none;">
+        <form class=" bg-white rounded-2xl p-5 w-[350px] mt-2">
+            <div>
+                <label for="" class=" font-semibold">Mobile Number</label>
+                <br>
+                <input id="login-phone" type="tel" placeholder="Enter your number"
+                    class="input input-neutral bg-[#f4f5f7] mt-2 rounded-3xl border-0" />
+                <p id="phone-not-match" class="text-red-500 text-sm mt-1 hidden">
+                    Phone number not match.
+                </p>
+            </div>
+            <div class="mt-2">
+                <label for="" class=" font-semibold ">Password</label>
+                <br>
+                <input id="login-pass" type="text" placeholder="Enter your password"
+                    class="input input-neutral bg-[#f4f5f7] mt-2 rounded-3xl border-0" />
+                <p id="pass-not-match" class="text-red-500 text-sm mt-1 hidden">
+                    Password not match.
+                </p>
+            </div>
+            <button id="login-btn" class="btn btn-primary w-full mt-4 rounded-4xl">Login</button>
+        </form>
+
+        <!-- successfully create an account -->
+        <p id="success-msg" class="text-green-600 text-sm mt-2 text-center mb-2 hidden">
+            Your account has been created successfully!
+        </p>
+
+
+        <!-- Don’t have an account -->
+        <p class="text-sm text-gray-600 text-center">
+            Don’t have an account?
+            <a href="#" id="account?" class="text-blue-600 font-semibold hover:underline">
+                Create an account
+            </a>
+        </p>
+    </div>
+
+
+    <script src="./index.js"></script>
+</body>
+
+</html>
