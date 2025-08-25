@@ -20,13 +20,13 @@
             <div class="left flex">
                 <img src="./assets/Group.png" class="h-[43px]">
                 <div class="ml-3">
-                    <h1 class="font-bold text-left">$ <span>45000</span></h1>
+                    <h1 class="font-bold text-left">$ <span id="current-blance">00</span></h1>
                     <p class="text-[#08080880]">Available Balance</p>
                 </div>
             </div>
             <div class="right">
-                <button class=" btn border-2 bg-white text-[#08080880] "><i
-                        class="rotate-180 fa-solid fa-arrow-right-from-bracket "></i>Log Out</button>
+                <a href="./index.html"><button class=" btn border-2 bg-white text-[#08080880] "><i
+                            class="rotate-180 fa-solid fa-arrow-right-from-bracket "></i>Log Out</button></a>
             </div>
         </div>
     </header>
@@ -41,44 +41,45 @@
     </div>
 
     <!-- menu-card -->
-    <div class=" w-[90%]  mx-auto pb-7 rounded-b-xl ">
+    <div id="menu-card" class=" w-[90%]  mx-auto pb-7 rounded-b-xl ">
         <div class="w-[85%] mx-auto pt-5 grid grid-cols-3 min-h-[200px] gap-4 bg-white ">
-            <a href="#" class="">
+
+            <a href="#" id="add-money-card">
                 <div class=" pb-7 rounded-lg text-center border-2 border-gray-300 pt-4">
                     <img src="./assets/wallet1.png" class="mx-auto" alt="">
                     <h2>Add Money</h2>
                 </div>
             </a>
 
-            <a href="#">
+            <a href="#" id="cash-out-card">
                 <div class="pb-7 rounded-lg text-center border-2 border-gray-300 pt-4">
                     <img src="./assets/send1.png" class="mx-auto" alt="">
                     <h2>Cashout</h2>
                 </div>
             </a>
 
-            <a href="#">
+            <a href="#" id="transfer-money-card">
                 <div class="pb-7 rounded-lg text-center border-2 border-gray-300 pt-4">
                     <img src="./assets/money1.png" class="mx-auto" alt="">
                     <h2>Transfer Money</h2>
                 </div>
             </a>
 
-            <a href="#">
+            <a href="#" id="get-bouns-card">
                 <div class="pb-8 rounded-lg text-center border-2 border-gray-300 pt-4">
                     <img src="./assets/bonus1.png" class="mx-auto" alt="">
                     <h2>Get Bonus</h2>
                 </div>
             </a>
 
-            <a href="#">
+            <a href="#" id="pay-bill-card">
                 <div class="pb-7 rounded-lg text-center border-2 border-gray-300 pt-4">
                     <img src="./assets/purse1.png" class="mx-auto" alt="">
                     <h2>Pay Bill</h2>
                 </div>
             </a>
 
-            <a href="#">
+            <a href="#" id="transactions-card">
                 <div class="pb-7 rounded-lg text-center border-2 border-gray-300 pt-4">
                     <img src="./assets/transaction1.png" class="mx-auto" alt="">
                     <h2>Transactions</h2>
@@ -88,41 +89,63 @@
     </div>
 
     <!-- add money content section -->
-    <div style="display: none;" class="bg-[#f4f5f7]  w-[90%] mx-auto pt-5">
+    <div id="add-money-form" class="hidden bg-[#f4f5f7]  w-[90%] mx-auto pt-5 pb-5">
         <h1 class="w-[85%] mx-auto font-bold  pt-1 pb-4">Add Money</h1>
         <form class="w-[85%] mx-auto bg-white p-10 rounded-xl">
             <label for="" class=" font-semibold">Select A Bank</label>
             <br>
-            <select class="select w-full w-full input input-neutral bg-[#f4f5f7] mt-2 mb-3 rounded-3xl border-0">
+            <select id="add-money-select"
+                class="select w-full w-full input input-neutral bg-[#f4f5f7] mt-2 mb-3 rounded-3xl border-0">
                 <option disabled selected>Select A Bank</option>
                 <option>AB Bank</option>
                 <option>City Bank</option>
                 <option>Bkash</option>
                 <option>Rocket</option>
             </select>
+            <p id="add-money-select-error" class="text-red-500 text-sm mt-1 hidden">
+                please select a Bank.
+            </p>
 
             <label for="" class=" font-semibold">Bank Account Number</label>
             <br>
-            <input id="" type="text" placeholder="Enter 11 digit account number"
+            <input id="add-money-account-number" type="text" placeholder="Enter 11 digit account number"
                 class="w-full input input-neutral bg-[#f4f5f7] mt-2 mb-3 rounded-3xl border-0" />
+
+            <p id="add-money-account-number-error" class="text-red-500 text-sm mt-1 hidden">
+                please enter 11 digit account number.
+            </p>
 
             <label for="" class=" font-semibold">Amount to Add</label>
             <br>
-            <input id="" type="text" placeholder="Add Amount to withdraw"
+            <input id="add-money-amount" type="text" placeholder="Add Money Amount"
                 class="w-full input input-neutral bg-[#f4f5f7] mt-2 mb-3 rounded-3xl border-0" />
 
-            <label for="" class=" font-semibold">Pin Number</label>
+            <p id="add-money-amount-error" class="text-red-500 text-sm mt-1 hidden">
+                please enter positive amount.
+            </p>
+
+            <label for="" class=" font-semibold">Password</label>
             <br>
-            <input id="" type="text" placeholder="Enter 4 digit pin number"
+            <input id="add-money-password" type="text" placeholder="Enter your password"
                 class="w-full input input-neutral bg-[#f4f5f7] mt-2 rounded-3xl border-0" />
 
+            <p id="add-money-password-error" class="text-red-500 text-sm mt-1 hidden">
+                please enter correct password.
+            </p>
 
-            <button id="" class="btn btn-primary text-white w-full mt-4 rounded-4xl">Add Money</button>
+            <button id="add-money-btn" class="btn btn-primary text-white w-full mt-4 rounded-4xl">Add Money</button>
+
+            <!-- successfully create an account -->
+            <p id="money-success-msg" class="text-green-600 text-sm mt-2 text-center mb-2 hidden">
+                Your add money successfully done!
+            </p>
         </form>
+
+
     </div>
 
     <!-- Cash Out content section -->
-    <div style="display: none;" class="bg-[#f4f5f7]  w-[90%] mx-auto pt-5">
+    <div id="cash-out-form" class="hidden bg-[#f4f5f7]  w-[90%] mx-auto pt-5">
         <h1 class="w-[85%] mx-auto font-bold  pt-1 pb-4">Cash Out</h1>
         <form class="w-[85%] mx-auto bg-white p-10 rounded-xl">
             <label for="" class=" font-semibold">Agent Number</label>
@@ -146,7 +169,7 @@
     </div>
 
     <!-- Transfer Money content section -->
-    <div style="display: none;" class="bg-[#f4f5f7]  w-[90%] mx-auto pt-5">
+    <div id="transfer-money-form" class="hidden bg-[#f4f5f7]  w-[90%] mx-auto pt-5">
         <h1 class="w-[85%] mx-auto font-bold  pt-1 pb-4">Transfer Money</h1>
         <form class="w-[85%] mx-auto bg-white p-10 rounded-xl">
             <label for="" class=" font-semibold">User Account Number</label>
@@ -170,7 +193,7 @@
     </div>
 
     <!-- Get Bonus Money content section -->
-    <div style="display: none;" class="bg-[#f4f5f7]  w-[90%] mx-auto pt-5">
+    <div id="get-bouns-form" class="hidden bg-[#f4f5f7]  w-[90%] mx-auto pt-5">
         <h1 class="w-[85%] mx-auto font-bold  pt-1 pb-4">Get Bonus</h1>
         <form class="w-[85%] mx-auto bg-white p-10 rounded-xl">
             <label for="" class=" font-semibold">Enter Bonus Coupon</label>
@@ -182,7 +205,7 @@
     </div>
 
     <!-- Pay Bill content section -->
-    <div class="bg-[#f4f5f7]  w-[90%] mx-auto pt-5">
+    <div id="pay-bill-form" class="hidden bg-[#f4f5f7]  w-[90%] mx-auto pt-5">
         <h1 class="w-[85%] mx-auto font-bold  pt-1 pb-4">Pay Bill</h1>
         <form class="w-[85%] mx-auto bg-white p-10 rounded-xl">
             <label for="" class=" font-semibold">Select To Pay</label>
