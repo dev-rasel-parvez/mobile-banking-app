@@ -1,29 +1,29 @@
 // Function for getElementById
 
 function getElementById(id) {
-    const select = document.getElementById(id);
-    return select;
+  const select = document.getElementById(id);
+  return select;
 }
 
 // Function for getElementByIdValue
 
 function getElementByIdValue(id) {
-    const select = document.getElementById(id).value;
-    return select;
+  const select = document.getElementById(id).value;
+  return select;
 }
 
 // Function for getElementByIdDisplayBlock
 
 function getElementByIdDisplayBlock(id) {
-    const select = getElementById(id).style.display = "block";
-    return select;
+  const select = getElementById(id).style.display = "block";
+  return select;
 }
 
 // Function for getElementByIdDisplayNone
 
 function getElementByIdDisplayNone(id) {
-    const select = getElementById(id).style.display = "none";
-    return select;
+  const select = getElementById(id).style.display = "none";
+  return select;
 }
 
 
@@ -35,8 +35,8 @@ function getElementByIdDisplayNone(id) {
 const $ = (id) => document.getElementById(id);
 
 const phoneInput = $('Create-account-phone-number');
-const passInput  = $('Create-password');
-const createBtn  = $('Create-account-btn');
+const passInput = $('Create-password');
+const createBtn = $('Create-account-btn');
 
 // --- validators ---
 function cleanDigits(v) {
@@ -143,44 +143,66 @@ createBtn.addEventListener('click', function (e) {
 
 // Don't have An account, create an account btn  functionality
 getElementById("account?").addEventListener("click", function (e) {
-    e.preventDefault();
-    getElementByIdDisplayNone('login');
-    getElementByIdDisplayBlock('create-account');
+  e.preventDefault();
+  getElementByIdDisplayNone('login');
+  getElementByIdDisplayBlock('create-account');
 })
 
 
-
 // Login functionality
+
+const loginPhone1 = document.getElementById('login-phone');
+const loginPhone1Error = document.getElementById('phone-not-match');
+
+loginPhone1.addEventListener("blur", () => {
+  let account = loginPhone1.value.trim();
+
+  if (!/^\d+$/.test(account)) {
+    loginPhone1Error.innerText = "Please enter 11 digit account number, not characters!";
+    loginPhone1Error.classList.remove("hidden");
+  } else if (account.length > 11) {
+    loginPhone1Error.innerText = "Please enter only 11 digit account number!";
+    loginPhone1Error.classList.remove("hidden");
+  } else if (account.length < 11) {
+    loginPhone1Error.innerText = "Please enter 11 digit account number!";
+    loginPhone1Error.classList.remove("hidden");
+  } else {
+    loginPhone1Error.classList.add("hidden");
+  }
+});
+
+
+
 document.getElementById("login-btn").addEventListener("click", function (e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    const savePhoneNumber = parseInt(localStorage.getItem("createPhoneNumber"));
-    const savePass = localStorage.getItem("createPassword");
+  const savePhoneNumber = parseInt(localStorage.getItem("createPhoneNumber"));
+  const savePass = localStorage.getItem("createPassword");
 
-    const loginPhone = parseInt(getElementByIdValue('login-phone'));
-    const loginPass = getElementByIdValue('login-pass');
+  const loginPhone = parseInt(getElementByIdValue('login-phone'));
+  const loginPass = getElementByIdValue('login-pass');
 
-    if (savePhoneNumber === loginPhone && savePass === loginPass) {
-        // both match → go to home
-        window.location.href = "./home.html";
-        loginPhone.value = '';
-        loginPass.value = '';
+  if (savePhoneNumber === loginPhone && savePass === loginPass) {
+    // both match → go to home
+    window.location.href = "./home.html";
+    loginPhone.value = '';
+    loginPass.value = '';
 
+  } else {
+    // check phone
+    if (savePhoneNumber !== loginPhone) {
+      getElementByIdDisplayBlock('phone-not-match');
     } else {
-        // check phone
-        if (savePhoneNumber !== loginPhone) {
-            getElementByIdDisplayBlock('phone-not-match');
-        } else {
-            getElementByIdDisplayNone('phone-not-match');
-        }
-
-        // check password
-        if (savePass !== loginPass) {
-            getElementByIdDisplayBlock('pass-not-match');
-        } else {
-            getElementByIdDisplayNone('pass-not-match');
-        }
+      getElementByIdDisplayNone('phone-not-match');
     }
+
+    // check password
+    if (savePass !== loginPass) {
+      getElementByIdDisplayBlock('pass-not-match');
+    } else {
+      getElementByIdDisplayNone('pass-not-match');
+    }
+  }
 
 
 })
@@ -188,7 +210,7 @@ document.getElementById("login-btn").addEventListener("click", function (e) {
 
 // Already An account go to login btn functionality
 document.getElementById("login?").addEventListener("click", function (e) {
-    e.preventDefault();
-    getElementByIdDisplayBlock('login');
-    getElementByIdDisplayNone('create-account');
+  e.preventDefault();
+  getElementByIdDisplayBlock('login');
+  getElementByIdDisplayNone('create-account');
 })
