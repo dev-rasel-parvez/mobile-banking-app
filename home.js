@@ -1,3 +1,5 @@
+const transactionsData = JSON.parse(localStorage.getItem("data")) || [];
+
 // helper functions
 function getElementByIdFun(id) {
   return document.getElementById(id);
@@ -13,30 +15,41 @@ function add(id) {
 getElementByIdFun('menu-card').addEventListener("click", function (e) {
 
   // 2. Find which <a> card was clicked
-  const clickedCard = e.target.closest("a"); // goes up to nearest <a>
-  if (!clickedCard) return; // if you clicked outside <a>, do nothing
+  const clickedCard = e.target.closest("a");
+  if (!clickedCard) return;
 
-  // 3. Map each card ID → its form ID
+  // 3. Remove highlight from ALL cards first
+  document.querySelectorAll("#menu-card a").forEach(card => {
+    card.classList.remove("border-2", "border-green-500");
+    card.classList.add("border-2", "border-gray-300");
+  });
+
+  // 4. Highlight only the clicked card
+  clickedCard.classList.remove("border-gray-300");
+  clickedCard.classList.add("border-green-500", "rounded-lg");
+
+  // 5. Map each card ID → its form ID
   const cardToForm = {
     "add-money-card": "add-money-form",
     "cash-out-card": "cash-out-form",
     "transfer-money-card": "transfer-money-form",
     "get-bouns-card": "get-bouns-form",
     "pay-bill-card": "pay-bill-form",
-    "transactions-card": null // (no form yet)
+    "transactions-card": "transactions-section"
   };
 
-  // 4. Find the form ID that matches this card
+  // 6. Find the form ID
   const formId = cardToForm[clickedCard.id];
 
-  // 5. Hide all forms first
-  Object.values(cardToForm).forEach(id => {
-    if (id) add(id); // add "hidden" class
-  });
+  // 7. Hide all forms first
+  Object.values(cardToForm).forEach(id => add(id));
 
-  // 6. Show only the clicked form
+  // 8. Show the right one 
   if (formId) {
-    remove(formId); // remove "hidden" class
+    remove(formId);
+    add('transactions-home-section');   // hide home transactions when card is active
+  } else {
+    remove('transactions-home-section'); // keep home section visible if no card selected
   }
 });
 
@@ -103,6 +116,12 @@ window.addEventListener("DOMContentLoaded", function () {
 document.getElementById("add-money-btn").addEventListener("click", function (e) {
   e.preventDefault();
 
+  let btn = getElementByIdFun('add-money-btn');
+  let imge = btn.parentElement.parentElement.parentElement
+    .querySelector("div#menu-card a.border-green-500 > div > img");
+
+  let img = imge.getAttribute("src")
+
   // 1. Validate Bank
   if (addMoneySelect.value === "Select A Bank") {
     addMoneySelectError.classList.remove("hidden");
@@ -149,6 +168,23 @@ document.getElementById("add-money-btn").addEventListener("click", function (e) 
   // 6. Show success message dynamically
   successMsg.innerText = `Your ${addedMoney}$ money added successfully!`;
   successMsg.classList.remove("hidden");
+
+  const data = {
+    name: "Add Money",
+    img: img,
+    amount: ` ${addedMoney}$ `,
+    date: new Date().toLocaleTimeString(),
+
+  }
+
+
+  // 1. Push new object
+  transactionsData.push(data);
+
+  // 2. Save back to localStorage
+  localStorage.setItem("data", JSON.stringify(transactionsData));
+
+
 
   // 7. Clear all inputs
   addMoneySelect.value = "Select A Bank";
@@ -261,7 +297,11 @@ window.addEventListener("DOMContentLoaded", function () {
 document.getElementById("send-money-btn").addEventListener("click", function (e) {
   e.preventDefault();
 
+  let btn = getElementByIdFun('send-money-btn');
+  let imge = btn.parentElement.parentElement.parentElement
+    .querySelector("div#menu-card a.border-green-500 > div > img");
 
+  let img = imge.getAttribute("src")
 
   // 2. Validate Account Number (must be 11 digits)
   if (sendMoneyAgentNumber.value.length !== 11 || isNaN(sendMoneyAgentNumber.value)) {
@@ -301,6 +341,19 @@ document.getElementById("send-money-btn").addEventListener("click", function (e)
     // 6. Show success message dynamically
     cashOutSuccessMsg.innerText = `You successfully Cash Out ${sendMoney}$ amount! `;
     cashOutSuccessMsg.classList.remove("hidden");
+
+    const data = {
+      name: "Cash Out",
+      img: img,
+      amount: ` ${sendMoney}$ `,
+      date: new Date().toLocaleTimeString(),
+
+    }
+    // 1. Push new object
+    transactionsData.push(data);
+
+    // 2. Save back to localStorage
+    localStorage.setItem("data", JSON.stringify(transactionsData));
 
     // 7. Clear all inputs
     sendMoneyAgentNumber.value = "";
@@ -413,7 +466,11 @@ window.addEventListener("DOMContentLoaded", function () {
 document.getElementById("transfer-money-btn").addEventListener("click", function (e) {
   e.preventDefault();
 
+  let btn = getElementByIdFun('transfer-money-btn');
+  let imge = btn.parentElement.parentElement.parentElement
+    .querySelector("div#menu-card a.border-green-500 > div > img");
 
+  let img = imge.getAttribute("src")
 
   // 2. Validate Account Number (must be 11 digits)
   if (transferMoneyAccNumber.value.length !== 11 || isNaN(transferMoneyAccNumber.value)) {
@@ -453,6 +510,19 @@ document.getElementById("transfer-money-btn").addEventListener("click", function
     // 6. Show success message dynamically
     transferSuccessMsg.innerText = `You have successfully transfer ${transferMoney}$ amount! `;
     transferSuccessMsg.classList.remove("hidden");
+
+    const data = {
+      name: "Transfer Money",
+      img: img,
+      amount: ` ${transferMoney}$ `,
+      date: new Date().toLocaleTimeString(),
+
+    }
+    // 1. Push new object
+    transactionsData.push(data);
+
+    // 2. Save back to localStorage
+    localStorage.setItem("data", JSON.stringify(transactionsData));
 
     // 7. Clear all inputs
     transferMoneyAccNumber.value = "";
@@ -534,6 +604,12 @@ window.addEventListener("DOMContentLoaded", function () {
 document.getElementById("bonus-money-btn").addEventListener("click", function (e) {
   e.preventDefault();
 
+  let btn = getElementByIdFun('bonus-money-btn');
+  let imge = btn.parentElement.parentElement.parentElement
+    .querySelector("div#menu-card a.border-green-500 > div > img");
+
+  let img = imge.getAttribute("src")
+
 
   // 3. Validate amount (must be > 0)
   let bonusMoney = Number(bonusMoneyAmount.value);
@@ -556,6 +632,19 @@ document.getElementById("bonus-money-btn").addEventListener("click", function (e
   // 6. Show success message dynamically
   bonusSuccessMsg.innerText = `You have successfully added ${bonusMoney}$ bonus amount!`;
   bonusSuccessMsg.classList.remove("hidden");
+
+  const data = {
+    name: "Get Bonus",
+    img: img,
+    amount: ` ${bonusMoney}$ `,
+    date: new Date().toLocaleTimeString(),
+
+  }
+  // 1. Push new object
+  transactionsData.push(data);
+
+  // 2. Save back to localStorage
+  localStorage.setItem("data", JSON.stringify(transactionsData));
 
   // 7. Clear all inputs
   bonusMoneyAmount.value = "";
@@ -610,7 +699,7 @@ payBillMoneyAmount.addEventListener("blur", () => {
   let payBillcurrentBalance = document.getElementById("current-blance").innerText;
   payBillcurrentBalance = Number(payBillcurrentBalance);
 
-  
+
 
   if (isNaN(payBillamount)) {
     payBillMoneyAmountError.innerText = "Please enter a positive number, not characters!";
@@ -621,7 +710,7 @@ payBillMoneyAmount.addEventListener("blur", () => {
   } else if (payBillcurrentBalance < payBillamount) {
     payBillMoneyAmountError.innerText = `Your ${payBillamount}$ pay bill amount is not avilable! `;
     payBillMoneyAmountError.classList.remove("hidden");
-    
+
   } else {
     payBillMoneyAmountError.classList.add("hidden");
   }
@@ -644,6 +733,12 @@ window.addEventListener("DOMContentLoaded", function () {
 // 🔹 Button click
 document.getElementById("pay-bill-btn").addEventListener("click", function (e) {
   e.preventDefault();
+
+  let btn = getElementByIdFun('pay-bill-btn');
+  let imge = btn.parentElement.parentElement.parentElement
+    .querySelector("div#menu-card a.border-green-500 > div > img");
+
+  let img = imge.getAttribute("src")
 
   // 1. Validate Bank
   if (payBillMoneySelect.value === "Select A Bill") {
@@ -692,6 +787,19 @@ document.getElementById("pay-bill-btn").addEventListener("click", function (e) {
   payBillSuccessMsg.innerText = `You have successfully  ${payBillMoney}$  payment!`;
   payBillSuccessMsg.classList.remove("hidden");
 
+  const data = {
+    name: "Pay Bill",
+    img: img,
+    amount: ` ${payBillMoney}$ `,
+    date: new Date().toLocaleTimeString(),
+
+  }
+  // 1. Push new object
+  transactionsData.push(data);
+
+  // 2. Save back to localStorage
+  localStorage.setItem("data", JSON.stringify(transactionsData));
+
   // 7. Clear all inputs
   payBillMoneySelect.value = "Select A Bank";
   payBillMoneyAccountNumber.value = "";
@@ -734,7 +842,119 @@ payBillPassword.addEventListener("input", function () {
 })
 
 
+// Transactions functionality
 
+// Render transactions
+function renderTransactions(showAll = false) {
+  const transactionSection = getElementByIdFun('transactions-section-div-add');
+  transactionSection.innerText = '';
+
+  // reverse for latest first
+  let dataToShow = [...transactionsData].reverse();
+
+  // if not showAll, limit to 5
+  if (!showAll) {
+    dataToShow = dataToShow.slice(0, 5);
+  }
+
+  for (const data of dataToShow) {
+    const div = document.createElement('div');
+    div.innerHTML = `
+        <div class="w-[85%] mx-auto pt-1 pb-4 flex justify-between items-center">
+          <div class="flex items-center gap-7 p-2">
+            <div class="w-[1.5rem] rounded-lg">
+              <img src="${data.img}" alt="">
+            </div>
+            <div>
+              <p class="text-[rgba(8,8,8,0.7)] text-base font-semibold">
+                ${data.name} : <span>${data.amount}</span>
+              </p>
+              <p>${data.date}</p>
+            </div>
+          </div>
+          <i class="fa-solid fa-ellipsis-vertical"></i>
+        </div>
+      `;
+    transactionSection.appendChild(div);
+  }
+}
+
+// Show latest 5 when clicking transactions-card → show full transactions section, hide home preview
+getElementByIdFun('transactions-card').addEventListener('click', function () {
+  renderTransactions(false);                             // render last 5
+  remove('transactions-section');                        // show full section
+  add('transactions-home-section');                      // hide preview section
+});
+
+// Show all when clicking "View All" in full transactions
+getElementByIdFun('view-all-btn').addEventListener('click', function () {
+  renderTransactions(true);
+});
+
+// Show all when clicking "View All" in home preview
+getElementByIdFun('view-all-home-btn').addEventListener('click', function () {
+  renderHomeTransactions(true);
+});
+
+// On page load → render home preview (last 5)
+window.addEventListener("DOMContentLoaded", function () {
+  renderHomeTransactions(false);
+  remove('transactions-home-section');   // make sure home preview visible
+  add('transactions-section');           // make sure full section hidden
+});
+
+
+
+
+
+
+
+// Transactions Home functionality
+
+// Render transactions
+function renderHomeTransactions(showAll = false) {
+  const transactionSection = getElementByIdFun('transactions-home-section-div-add');
+  transactionSection.innerText = '';
+
+  // reverse for latest first
+  let dataToShow = [...transactionsData].reverse();
+
+  // if not showAll, limit to 5
+  if (!showAll) {
+    dataToShow = dataToShow.slice(0, 5);
+  }
+
+  for (const data of dataToShow) {
+    const div = document.createElement('div');
+    div.innerHTML = `
+        <div class="w-[85%] mx-auto pt-1 pb-4 flex justify-between items-center">
+          <div class="flex items-center gap-7 p-2">
+            <div class="w-[1.5rem] rounded-lg">
+              <img src="${data.img}" alt="">
+            </div>
+            <div>
+              <p class="text-[rgba(8,8,8,0.7)] text-base font-semibold">
+                ${data.name} : <span>${data.amount}</span>
+              </p>
+              <p>${data.date}</p>
+            </div>
+          </div>
+          <i class="fa-solid fa-ellipsis-vertical"></i>
+        </div>
+      `;
+    transactionSection.appendChild(div);
+  }
+}
+
+// Show latest 5 automatically on page load (for home section)
+window.addEventListener("DOMContentLoaded", function () {
+  renderHomeTransactions(false);
+});
+
+// Show all when clicking "View All"
+getElementByIdFun('view-all-home-btn').addEventListener('click', function () {
+  renderHomeTransactions(true);
+});
 
 
 

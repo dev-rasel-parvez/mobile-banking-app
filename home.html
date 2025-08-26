@@ -44,43 +44,43 @@
     <div id="menu-card" class=" w-[90%]  mx-auto pb-7 rounded-b-xl ">
         <div class="w-[85%] mx-auto pt-5 grid grid-cols-3 min-h-[200px] gap-4 bg-white ">
 
-            <a href="#" id="add-money-card">
-                <div class=" pb-7 rounded-lg text-center border-2 border-gray-300 pt-4">
+            <a href="#" id="add-money-card" class="pb-7 rounded-lg text-center border-2 border-gray-300 pt-4">
+                <div>
                     <img src="./assets/wallet1.png" class="mx-auto" alt="">
                     <h2>Add Money</h2>
                 </div>
             </a>
 
-            <a href="#" id="cash-out-card">
-                <div class="pb-7 rounded-lg text-center border-2 border-gray-300 pt-4">
+            <a href="#" id="cash-out-card" class="pb-7 rounded-lg text-center border-2 border-gray-300 pt-4">
+                <div>
                     <img src="./assets/send1.png" class="mx-auto" alt="">
                     <h2>Cashout</h2>
                 </div>
             </a>
 
-            <a href="#" id="transfer-money-card">
-                <div class="pb-7 rounded-lg text-center border-2 border-gray-300 pt-4">
+            <a href="#" id="transfer-money-card" class="pb-7 rounded-lg text-center border-2 border-gray-300 pt-4">
+                <div>
                     <img src="./assets/money1.png" class="mx-auto" alt="">
                     <h2>Transfer Money</h2>
                 </div>
             </a>
 
-            <a href="#" id="get-bouns-card">
-                <div class="pb-8 rounded-lg text-center border-2 border-gray-300 pt-4">
+            <a href="#" id="get-bouns-card" class="pb-8 rounded-lg text-center border-2 border-gray-300 pt-4">
+                <div>
                     <img src="./assets/bonus1.png" class="mx-auto" alt="">
                     <h2>Get Bonus</h2>
                 </div>
             </a>
 
-            <a href="#" id="pay-bill-card">
-                <div class="pb-7 rounded-lg text-center border-2 border-gray-300 pt-4">
+            <a href="#" id="pay-bill-card" class="pb-7 rounded-lg text-center border-2 border-gray-300 pt-4">
+                <div>
                     <img src="./assets/purse1.png" class="mx-auto" alt="">
                     <h2>Pay Bill</h2>
                 </div>
             </a>
 
-            <a href="#" id="transactions-card">
-                <div class="pb-7 rounded-lg text-center border-2 border-gray-300 pt-4">
+            <a href="#" id="transactions-card" class="pb-7 rounded-lg text-center border-2 border-gray-300 pt-4">
+                <div>
                     <img src="./assets/transaction1.png" class="mx-auto" alt="">
                     <h2>Transactions</h2>
                 </div>
@@ -245,14 +245,17 @@
         </form>
     </div>
 
+
     <!-- Pay Bill content section -->
-    <div id="pay-bill-form" class="hidden bg-[#f4f5f7]  w-[90%] mx-auto pt-5">
-        <h1 class="w-[85%] mx-auto font-bold  pt-1 pb-4">Pay Bill</h1>
+    <div id="pay-bill-form" class="hidden bg-[#f4f5f7] w-[90%] mx-auto pt-5">
+        <h1 class="w-[85%] mx-auto font-bold pt-1 pb-4">Pay Bill</h1>
+
         <form class="w-[85%] mx-auto bg-white p-10 rounded-xl">
-            <label for="" class=" font-semibold">Select To Pay</label>
+
+            <label for="" class="font-semibold">Select To Pay</label>
             <br>
             <select id="pay-bill-money-select"
-                class="select w-full w-full input input-neutral bg-[#f4f5f7] mt-2 mb-3 rounded-3xl border-0 ">
+                class="select w-full w-full input input-neutral bg-[#f4f5f7] mt-2 mb-3 rounded-3xl border-0">
                 <option disabled selected>Select A Bill</option>
                 <option class="font-semibold">Electricity bill</option>
                 <option class="font-semibold">WiFi bill</option>
@@ -263,41 +266,70 @@
                 please select a Bank.
             </p>
 
-            <label for="" class=" font-semibold">Biller Account Number</label>
+            <label for="" class="font-semibold">Biller Account Number</label>
             <br>
             <input id="pay-bill-money-account-number" type="text" placeholder="Enter account number"
                 class="w-full input input-neutral bg-[#f4f5f7] mt-2 mb-3 rounded-3xl border-0" />
-
             <p id="pay-bill-money-account-number-error" class="text-red-500 text-sm mt-1 hidden">
                 please enter 11 digit account number.
             </p>
 
-            <label for="" class=" font-semibold">Amount to Pay</label>
+            <label for="" class="font-semibold">Amount to Pay</label>
             <br>
             <input id="pay-bill-money-amount" type="text" placeholder="Add Amount to Pay"
                 class="w-full input input-neutral bg-[#f4f5f7] mt-2 mb-3 rounded-3xl border-0" />
-
             <p id="pay-bill-money-amount-error" class="text-red-500 text-sm mt-1 hidden">
                 please add positive amount.
             </p>
 
-            <label for="" class=" font-semibold">Password</label>
+            <label for="" class="font-semibold">Password</label>
             <br>
             <input id="pay-bill-password" type="text" placeholder="Enter your password"
                 class="w-full input input-neutral bg-[#f4f5f7] mt-2 rounded-3xl border-0" />
-
             <p id="pay-bill-password-error" class="text-red-500 text-sm mt-1 hidden">
                 please enter correct password.
             </p>
 
-            <button id="pay-bill-btn" class="btn btn-primary text-white w-full mt-4 rounded-4xl">Pay Now</button>
+            <button id="pay-bill-btn" class="btn btn-primary text-white w-full mt-4 rounded-4xl">
+                Pay Now
+            </button>
 
-            <!-- successfully  -->
+            <!-- successfully -->
             <p id="pay-bill-success-msg" class="text-green-600 text-sm mt-2 text-center mb-2 hidden">
                 Your add money successfully done!
             </p>
+
         </form>
     </div>
+
+
+    <!-- Transactions content section -->
+    <div id="transactions-section" class="hidden bg-[#f4f5f7] w-[90%] mx-auto pt-5">
+
+        <!-- Header -->
+        <div class="w-[85%] mx-auto pt-1 pb-4 flex justify-between items-center">
+            <h1 class="font-bold">Transactions</h1>
+            <p id="view-all-btn" class="text-[#08080880] cursor-pointer">View All</p>
+        </div>
+
+        <!-- Transactions will be added here -->
+        <div id="transactions-section-div-add"></div>
+    </div>
+
+    <!-- Transactions Home section -->
+    <div id="transactions-home-section" class="hidden bg-[#f4f5f7] w-[90%] mx-auto pt-5">
+
+        <!-- Header -->
+        <div class="w-[85%] mx-auto pt-1 pb-4 flex justify-between items-center">
+            <h1 class="font-bold">Transactions</h1>
+            <p id="view-all-home-btn" class="text-[#08080880] cursor-pointer">View All</p>
+        </div>
+
+        <!-- Transactions will be added here -->
+        <div id="transactions-home-section-div-add"></div>
+    </div>
+
+
 
 
     <script src="./home.js"></script>
