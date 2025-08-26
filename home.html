@@ -121,7 +121,7 @@
                 class="w-full input input-neutral bg-[#f4f5f7] mt-2 mb-3 rounded-3xl border-0" />
 
             <p id="add-money-amount-error" class="text-red-500 text-sm mt-1 hidden">
-                please enter positive amount.
+                please add positive amount.
             </p>
 
             <label for="" class=" font-semibold">Password</label>
@@ -150,21 +150,36 @@
         <form class="w-[85%] mx-auto bg-white p-10 rounded-xl">
             <label for="" class=" font-semibold">Agent Number</label>
             <br>
-            <input id="" type="text" placeholder="Enter 11 digit number"
+            <input id="send-money-account-number" type="text" placeholder="Enter 11 digit number"
                 class="w-full input input-neutral bg-[#f4f5f7] mt-2 mb-3 rounded-3xl border-0" />
+
+            <p id="send-money-account-number-error" class="text-red-500 text-sm mt-1 hidden">
+                please enter 11 digit account number.
+            </p>
 
             <label for="" class=" font-semibold">Amount</label>
             <br>
-            <input id="" type="text" placeholder="Enter amount to withdraw"
+            <input id="send-money-amount" type="text" placeholder="Enter amount to withdraw"
                 class="w-full input input-neutral bg-[#f4f5f7] mt-2 mb-3 rounded-3xl border-0" />
 
-            <label for="" class=" font-semibold">Pin Number</label>
+            <p id="send-money-amount-error" class="text-red-500 text-sm mt-1 hidden">
+                please add positive amount.
+            </p>
+
+            <label for="" class=" font-semibold">Password</label>
             <br>
-            <input id="" type="text" placeholder="Enter 4 digit pin number"
+            <input id="send-money-password" type="text" placeholder="Enter your Password"
                 class="w-full input input-neutral bg-[#f4f5f7] mt-2 rounded-3xl border-0" />
 
-
-            <button id="" class="btn btn-primary w-full text-white mt-4 rounded-4xl">Withdraw Money</button>
+            <p id="send-money-password-error" class="text-red-500 text-sm mt-1 hidden">
+                please enter your correct password.
+            </p>
+            <button id="send-money-btn" class="money-btn btn btn-primary w-full text-white mt-4 rounded-4xl">Withdraw
+                Money</button>
+            <!-- successfully  -->
+            <p id="cash-out-success-msg" class="text-green-600 text-sm mt-2 text-center mb-2 hidden">
+                Your add money successfully done!
+            </p>
         </form>
     </div>
 
@@ -174,21 +189,37 @@
         <form class="w-[85%] mx-auto bg-white p-10 rounded-xl">
             <label for="" class=" font-semibold">User Account Number</label>
             <br>
-            <input id="" type="text" placeholder="Enter 11 digit number"
+            <input id="transfer-money-account-number" type="text" placeholder="Enter 11 digit number"
                 class="w-full input input-neutral bg-[#f4f5f7] mt-2 mb-3 rounded-3xl border-0" />
+
+            <p id="transfer-money-account-number-error" class="text-red-500 text-sm mt-1 hidden">
+                please enter 11 digit account number.
+            </p>
 
             <label for="" class=" font-semibold">Amount</label>
             <br>
-            <input id="" type="text" placeholder="Enter amount to transfer"
+            <input id="transfer-money-amount" type="text" placeholder="Enter amount to transfer"
                 class="w-full input input-neutral bg-[#f4f5f7] mt-2 mb-3 rounded-3xl border-0" />
 
-            <label for="" class=" font-semibold">Pin Number</label>
+            <p id="transfer-money-amount-error" class="text-red-500 text-sm mt-1 hidden">
+                please select positive amount.
+            </p>
+
+            <label for="" class=" font-semibold">Password</label>
             <br>
-            <input id="" type="text" placeholder="Enter 4 digit pin number"
+            <input id="transfer-money-password" type="text" placeholder="Enter your Password"
                 class="w-full input input-neutral bg-[#f4f5f7] mt-2 rounded-3xl border-0" />
 
-
-            <button id="" class="btn btn-primary w-full text-white mt-4 rounded-4xl">Send Now</button>
+            <p id="transfer-money-password-error" class="text-red-500 text-sm mt-1 hidden">
+                please enter your correct password.
+            </p>
+            <button id="transfer-money-btn"
+                class="money-btn btn btn-primary w-full text-white mt-4 rounded-4xl">Withdraw
+                Money</button>
+            <!-- successfully  -->
+            <p id="transfer-success-msg" class="text-green-600 text-sm mt-2 text-center mb-2 hidden">
+                Your add money successfully done!
+            </p>
         </form>
     </div>
 
@@ -196,11 +227,21 @@
     <div id="get-bouns-form" class="hidden bg-[#f4f5f7]  w-[90%] mx-auto pt-5">
         <h1 class="w-[85%] mx-auto font-bold  pt-1 pb-4">Get Bonus</h1>
         <form class="w-[85%] mx-auto bg-white p-10 rounded-xl">
-            <label for="" class=" font-semibold">Enter Bonus Coupon</label>
+            <label for="" class=" font-semibold">Bonus Amount</label>
             <br>
-            <input id="" type="text" placeholder="Enter your coupon"
+            <input id="bonus-money-amount" type="text" placeholder="Enter bonus amount"
                 class="w-full input input-neutral bg-[#f4f5f7] mt-2 mb-3 rounded-3xl border-0" />
-            <button id="" class="btn btn-primary w-full text-white mt-4 rounded-4xl">Get Bonus</button>
+
+            <p id="bonus-money-amount-error" class="text-red-500 text-sm mt-1 hidden">
+                please provied positive number.
+            </p>
+
+            <button id="bonus-money-btn" class="btn btn-primary w-full text-white mt-4 rounded-4xl">Get Bonus</button>
+
+            <!-- successfully  -->
+            <p id="bonus-money-success-msg" class="text-green-600 text-sm mt-2 text-center mb-2 hidden">
+                Your add money successfully done!
+            </p>
         </form>
     </div>
 
@@ -210,31 +251,51 @@
         <form class="w-[85%] mx-auto bg-white p-10 rounded-xl">
             <label for="" class=" font-semibold">Select To Pay</label>
             <br>
-            <select class="select w-full w-full input input-neutral bg-[#f4f5f7] mt-2 mb-3 rounded-3xl border-0">
+            <select id="pay-bill-money-select"
+                class="select w-full w-full input input-neutral bg-[#f4f5f7] mt-2 mb-3 rounded-3xl border-0 ">
                 <option disabled selected>Select A Bill</option>
-                <option>Electricity bill</option>
-                <option>Wifi bill</option>
-                <option>Gas bill</option>
-                <option>Water bill</option>
+                <option class="font-semibold">Electricity bill</option>
+                <option class="font-semibold">WiFi bill</option>
+                <option class="font-semibold">Gas bill</option>
+                <option class="font-semibold">Watter bill</option>
             </select>
+            <p id="pay-bill-money-select-error" class="text-red-500 text-sm mt-1 hidden">
+                please select a Bank.
+            </p>
 
             <label for="" class=" font-semibold">Biller Account Number</label>
             <br>
-            <input id="" type="text" placeholder="Enter account number"
+            <input id="pay-bill-money-account-number" type="text" placeholder="Enter account number"
                 class="w-full input input-neutral bg-[#f4f5f7] mt-2 mb-3 rounded-3xl border-0" />
+
+            <p id="pay-bill-money-account-number-error" class="text-red-500 text-sm mt-1 hidden">
+                please enter 11 digit account number.
+            </p>
 
             <label for="" class=" font-semibold">Amount to Pay</label>
             <br>
-            <input id="" type="text" placeholder="Add Amount to pay"
+            <input id="pay-bill-money-amount" type="text" placeholder="Add Amount to Pay"
                 class="w-full input input-neutral bg-[#f4f5f7] mt-2 mb-3 rounded-3xl border-0" />
 
-            <label for="" class=" font-semibold">Pin Number</label>
+            <p id="pay-bill-money-amount-error" class="text-red-500 text-sm mt-1 hidden">
+                please add positive amount.
+            </p>
+
+            <label for="" class=" font-semibold">Password</label>
             <br>
-            <input id="" type="text" placeholder="Enter 4 digit pin number"
+            <input id="pay-bill-password" type="text" placeholder="Enter your password"
                 class="w-full input input-neutral bg-[#f4f5f7] mt-2 rounded-3xl border-0" />
 
+            <p id="pay-bill-password-error" class="text-red-500 text-sm mt-1 hidden">
+                please enter correct password.
+            </p>
 
-            <button id="" class="btn btn-primary text-white w-full mt-4 rounded-4xl">Pay Now</button>
+            <button id="pay-bill-btn" class="btn btn-primary text-white w-full mt-4 rounded-4xl">Pay Now</button>
+
+            <!-- successfully  -->
+            <p id="pay-bill-success-msg" class="text-green-600 text-sm mt-2 text-center mb-2 hidden">
+                Your add money successfully done!
+            </p>
         </form>
     </div>
 
