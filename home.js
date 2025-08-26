@@ -1,3 +1,9 @@
+// Simple auth check: if no password or phone, redirect to login page
+if (!localStorage.getItem("createPassword") || !localStorage.getItem("createPhoneNumber")) {
+  window.location.href = "./index.html";
+}
+
+
 const transactionsData = JSON.parse(localStorage.getItem("data")) || [];
 
 // helper functions
